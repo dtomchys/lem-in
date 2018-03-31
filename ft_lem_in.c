@@ -21,6 +21,20 @@ void testing(t_map *map)
 	}
 }
 
+void test(t_map *map)
+{
+	int i;
+	int j;
+	i = -1;
+	while (++i < map->size)
+	{
+		j = -1;
+		while (++j < map->size)
+			printf("%d ", map->link[i][j]);
+		printf("\n");
+	}
+}
+
 int main(void)
 {
 	char	*line;
@@ -33,8 +47,11 @@ int main(void)
 	while (get_next_line(0, &line) > 0)
 	{
 		ft_make_rooms(&map, &line);
-		testing(map);
+//		testing(map);
 		ft_make_links(&map, &line);
+//		test(map);
+		if (!ft_find_ways(&map))
+			exit(EXIT_FAILURE);
 		exit(0);
 	}
 	return (0);

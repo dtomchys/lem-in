@@ -74,6 +74,5 @@ int 	ft_rooms_err_manager(t_rooms *head, char ***split)
 			return(0);
 		head = head->next;
 	}
-	ft_free_split(split);
 	return (1);
 }

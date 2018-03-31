@@ -15,7 +15,7 @@ CC = gcc -Wall -Werror -Wextra -g3
 RM = rm -f
 HD = ft_lem_in.h
 MFLIB = ./libft
-SRC = ft_lem_in.c ft_make_rooms.c ft_error_managment.c
+SRC = ft_lem_in.c ft_make_rooms.c ft_error_managment.c ft_make_links.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
