@@ -12,47 +12,43 @@
 
 #include "ft_lem_in.h"
 
-void testing(t_map *map)
+void	ft_set_st_end(t_map **map)
 {
-	while (map->top)
+	t_rooms	*temp;
+	int		i;
+
+	temp = (*map)->top;
+	i = 0;
+	while (temp)
 	{
-		printf("X: %d Y: %d NAME: %s STAT: %d \n", map->top->x, map->top->y, map->top->name, map->top->st);
-		map->top = map->top->next;
+		if (temp->st == STA)
+			(*map)->start = i;
+		if (temp->st == END)
+			(*map)->end = i;
+		i++;
+		temp = temp->next;
 	}
 }
 
-void test(t_map *map)
-{
-	int i;
-	int j;
-	i = -1;
-	while (++i < map->size)
-	{
-		j = -1;
-		while (++j < map->size)
-			printf("%d ", map->link[i][j]);
-		printf("\n");
-	}
-}
-
-int main(void)
+int		main(void)
 {
 	char	*line;
 	t_map	*map;
+	int		i;
 
 	map = (t_map*)malloc(sizeof(t_map));
 	ft_bzero(map, sizeof(t_map));
-	if (get_next_line(0, &line) && !ft_ant_err_manager(&line, &map))
+	if ((i = get_next_line(0, &line)) && !ft_ant_err_manager(&line, &map))
+		exit(EXIT_FAILURE);
+	if (i == 0 && EMPTY)
 		exit(EXIT_FAILURE);
 	while (get_next_line(0, &line) > 0)
 	{
 		ft_make_rooms(&map, &line);
-//		testing(map);
+		ft_set_st_end(&map);
 		ft_make_links(&map, &line);
-//		test(map);
 		if (!ft_find_ways(&map))
 			exit(EXIT_FAILURE);
-		exit(0);
 	}
 	return (0);
 }

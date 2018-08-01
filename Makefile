@@ -10,12 +10,13 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME = lem_in
+NAME = lem-in
 CC = gcc -Wall -Werror -Wextra -g3
 RM = rm -f
 HD = ft_lem_in.h
 MFLIB = ./libft
-SRC = ft_lem_in.c ft_make_rooms.c ft_error_managment.c ft_make_links.c
+SRC = ft_lem_in.c ft_make_rooms.c ft_error_managment.c ft_make_links.c\
+queue_manag.c ft_find_ways.c ft_ways.c ft_tools.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
